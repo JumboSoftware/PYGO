@@ -80,7 +80,7 @@ def PygoTerminal():
 		elif cmd == '  ' or '   ':
 			continue
 		else:
-			print('\nInvalid Command. Please use \'help\' if you are lost.\n')
+                        print('\nInvalid Command. Please use \'help\' if you are lost.\n')
 			continue
 
 # editor
@@ -109,36 +109,36 @@ def PygoEditor(*pygo_extensions):
 			# this will hold the text
 			global per_line
 			per_line = '~  '
-				global data
-				data = ""
-				# mode checking
-				if mode == 'r':
-					print(f.read())
-					PygoTerminal()
-				elif mode == 'a':
-					while True:
-						global text
-						text = input(f'{per_line}' + '  ')
-						# text and data are seperate variables so that every time the user enters a line of code, the text is added to the data variable along with a newline escape, otherwise, all of the text entered would be gathered into one line
-						data += (text + '\n')
-						# save file and return to terminal
-						if text == 'pygo.save':
-							data -= 'pygo.save'
-							f.write(data)
-							PygoTerminal()
-							break
-						elif text == 'pygo.exit':
-							PygoTerminal()
-							break
-				# create new file
-				elif mode == 'x':
-					new_file_name = input('\nCREATE NEW FILE: ')
-					new_file = open(f"{new_file_name}", 'x')
-					print()
-					PygoTerminal()
-				else:
-					print('\nInvalid Mode Choice.\n')
-					PygoTerminal()
+			global data
+			data = ""
+			# mode checking
+			if mode == 'r':
+				print(f.read())
+				PygoTerminal()
+			elif mode == 'a':
+				while True:
+					global text
+					text = input(f'{per_line}' + '  ')
+					# text and data are seperate variables so that every time the user enters a line of code, the text is added to the data variable along with a newline escape, otherwise, all of the text entered would be gathered into one line
+					data += (text + '\n')
+					# save file and return to terminal
+					if text == 'pygo.save':
+						data -= 'pygo.save'
+						f.write(data)
+						PygoTerminal()
+						break
+					elif text == 'pygo.exit':
+						PygoTerminal()
+						break
+			# create new file
+			elif mode == 'x':
+				new_file_name = input('\nCREATE NEW FILE: ')
+				new_file = open(f"{new_file_name}", 'x')
+				print()
+				PygoTerminal()
+			else:
+				print('\nInvalid Mode Choice.\n')
+				PygoTerminal()
 
 PygoTerminal()
 
