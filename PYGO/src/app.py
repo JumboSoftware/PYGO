@@ -1,3 +1,6 @@
+import random
+import os
+
 # welcome to pygo's source code
 
 startup_message = """
@@ -17,7 +20,7 @@ If you are new, please execute 'help' to get started.
 
 """
 
-help = """
+help_ = """
 
 ~~ IN TERMINAL
 
@@ -61,18 +64,18 @@ x - Create New File
 
 # terminal
 def PygoTerminal():
-        global cmd_format
-        cmd_format = f"{terminal_name}"
-        print(startup_message)
+	global cmd_format
+	cmd_format = f"{terminal_name}"
+	print(startup_message)
 	while True:
 		cmd = input(cmd_format)
 		if cmd == 'help':
-			print(help_)
+			print(help__)
 			continue
 		# open editor
 		elif cmd == 'pygo.start':
-                        PygoEditor()
-		        break
+			PygoEditor()
+			break
 		# end session
 		elif cmd == 'pygo.end':
 			break
@@ -82,7 +85,7 @@ def PygoTerminal():
 		elif cmd == '  ' or '   ':
 			continue
 		else:
-                        print('\nInvalid Command. Please use \'help\' if you are lost.\n')
+			print('\nInvalid Command. Please use \'help\' if you are lost.\n')
 			continue
 
 # editor
@@ -90,63 +93,76 @@ def PygoEditor(*pygo_extensions):
 	# for extensions
 	extensions = [pygo_extensions]
 	# select file
-	global path
-	path = input('\nENTER FILE PATH OR USE A FILE NAME FOR A LOCAL FILE: ')
-	# choose mode
-	print(modeList)
-	global mode
 	while True:
-		mode = input('\nMODE: ')
-		if mode == 'cancel':
+		global path
+		path = input('\nENTER FILE PATH OR USE A FILE NAME FOR A LOCAL FILE: ')
+		if path == 'cancel':
 			PygoTerminal()
-                        break
-		else:
 			break
-		# for invalid files
-		if '.' not in path:
-			print('\nFile must have an extension.')
-			# return to terminal, this will be used some more
+		elif len(path) == 0:
+			print('\nNo File Chosen.')
 			PygoTerminal()
+			break
 		else:
-			file = open(f"{path}", f"{mode}")
-			# this will hold the text
-			global per_line
-			per_line = '~  '
-			global data
-			data = ""
-			# mode checking
-			if mode == 'r':
-				print(f.read())
-				PygoTerminal()
-			elif mode == 'a':
-				while True:
-					global text
-					text = input(f'{per_line}' + '  ')
-					# text and data are seperate variables so that every time the user enters a line of code, the text is added to the data variable along with a newline escape, otherwise, all of the text entered would be gathered into one line
-					data += (text + '\n')
-					# save file and return to terminal
-					if text == 'pygo.save':
-						data -= 'pygo.save'
-						f.write(data)
+			# choose mode
+			print(modeList)
+			global mode
+			while True:
+				mode = input('\nMODE: ')
+				if mode == 'cancel':
+					PygoTerminal()
+					break
+				else:
+					# for invalid files
+					if '.' not in path:
+						print('\nFile must have an extension.')
+						# return to terminal, this will be used some more
 						PygoTerminal()
-						break
-					elif text == 'pygo.exit':
-						PygoTerminal()
-						break
-			# create new file
-			elif mode == 'x':
-				new_file_name = input('\nCREATE NEW FILE: ')
-				new_file = open(f"{new_file_name}", 'x')
-				print()
-				PygoTerminal()
-			else:
-				print('\nInvalid Mode Choice.\n')
-				PygoTerminal()
-
+					else:
+						file = open(f"{path}", f"{mode}")
+						# this will hold the text
+						global per_line
+						per_line = '~  '
+						global data
+						data = ""
+						# mode checking
+						if mode == 'r':
+							print(file.read())
+							PygoTerminal()
+						elif mode == 'a':
+							while True:
+								global text
+								text = input(f'{per_line}' + '  ')
+									# text and data are seperate variables so that every time the user enters a line of code, the text is added to the data variable along with a newline escape, otherwise, all of the text entered would be gathered into one line
+								data += (text + '\n')
+								# save file and return to terminal
+								if text == 'pygo.save':
+									file.write(data)
+									PygoTerminal()
+									break
+								elif text == 'pygo.exit':
+									file.write(data)
+									PygoTerminal()
+									break
+						# create new file
+						elif mode == 'x':
+							new_file_name = input('\nCREATE NEW FILE: ')
+							new_file = open(f"{new_file_name}", 'x')
+							print()
+							PygoTerminal()
+							break
+						else:
+							print('\nInvalid Mode Choice.\n')
+							PygoTerminal()
+							break
+					break
+			break
+	
 PygoTerminal()
 
 
-# nothing else here 
+
+# nothing else here
 
 
 
