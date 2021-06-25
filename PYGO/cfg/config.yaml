@@ -3,3 +3,8 @@ version: 1.0
 release: 1.0
 file_size_limit: Null
 auto_path: True
+full_path_required: False
+allow_local_files: True
+auto_save: False
+require_login: False
+allow_extensions: True
