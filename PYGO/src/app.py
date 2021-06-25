@@ -63,7 +63,7 @@ x - Create New File
 def PygoTerminal():
         global cmd_format
         cmd_format = f"{terminal_name}"
-	print(startup_message)
+        print(startup_message)
 	while True:
 		cmd = input(cmd_format)
 		if cmd == 'help':
