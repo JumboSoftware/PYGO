@@ -99,6 +99,7 @@ def PygoEditor(*pygo_extensions):
 		mode = input('\nMODE: ')
 		if mode == 'cancel':
 			PygoTerminal()
+                        break
 		else:
 			break
 		# for invalid files
