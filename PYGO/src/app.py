@@ -61,16 +61,18 @@ x - Create New File
 
 # terminal
 def PygoTerminal():
+        global cmd_format
+        cmd_format = f"{terminal_name}"
 	print(startup_message)
 	while True:
-		cmd = input(f"{terminal_name}")
+		cmd = input(cmd_format)
 		if cmd == 'help':
 			print(help_)
 			continue
 		# open editor
 		elif cmd == 'pygo.start':
-		  PygoEditor()
-		  break
+                        PygoEditor()
+		        break
 		# end session
 		elif cmd == 'pygo.end':
 			break
