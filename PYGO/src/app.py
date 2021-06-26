@@ -70,7 +70,7 @@ def PygoTerminal():
 	while True:
 		cmd = input(cmd_format)
 		if cmd == 'help':
-			print(help__)
+			print(help_)
 			continue
 		# open editor
 		elif cmd == 'pygo.start':
