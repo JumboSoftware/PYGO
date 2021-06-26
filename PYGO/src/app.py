@@ -95,7 +95,7 @@ def PygoEditor(*pygo_extensions):
 	# select file
 	while True:
 		global path
-		path = input('\nENTER FILE PATH OR USE A FILE NAME FOR A LOCAL FILE: ')
+		path = input('\nENTER FILE PATH OR USE A FILE NAME FOR A LOCAL FILE OR EXECUTE 'cancel' TO RETURN TO THE TERMINAL: ')
 		if path == 'cancel':
 			PygoTerminal()
 			break
@@ -108,7 +108,7 @@ def PygoEditor(*pygo_extensions):
 			print(modeList)
 			global mode
 			while True:
-				mode = input('\nMODE: ')
+				mode = input('\nSELECT MODE OR EXECUTE 'cancel' TO RETURN TO THE TERMINAL: ')
 				if mode == 'cancel':
 					PygoTerminal()
 					break
