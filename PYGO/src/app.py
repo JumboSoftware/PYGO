@@ -155,7 +155,10 @@ def PygoEditor(*pygo_extensions):
 							print('\nInvalid Mode Choice.\n')
 							PygoTerminal()
 							break
+
+					PygoTerminal()
 					break
+			PygoTerminal()
 			break
 	
 PygoTerminal()
